@@ -31,7 +31,9 @@ This app has been developed in Angular. To Test it NPM and Angular are required.
 
 - 2nd Step: Install Angular CLI: https://angular.io/cli
 
-- 3rd Step: Open a terminal on the project root directory and run the following command "ng serve --open"
+- 3rd Step: Open a terminal on the project root directory and run the following commands: 
+    a. "npm install" 
+    b. "ng serve --open"
 
 ### Known Issues:
 
