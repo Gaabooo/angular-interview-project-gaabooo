@@ -34,8 +34,3 @@ This app has been developed in Angular. To Test it NPM and Angular are required.
 - 3rd Step: Open a terminal on the project root directory and run the following commands: 
 -- a. "npm install" 
 -- b. "ng serve --open"
-
-### Known Issues:
-
-- 1) Click twice to open certain date (If one date is open, I have to deselect it with one click and click the date I want to open again). - Priority: Low
-- 2) The colors edition seems to be working wrongly. If you create a new reminder and change its colour it would change all the created reminders' colors. - Priority: Medium/High (In Progress)
