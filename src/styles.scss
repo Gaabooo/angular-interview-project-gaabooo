@@ -1,0 +1,27 @@
+/* ------------ IMPORTS ------------ */
+
+// Angular Material
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// Boostrap 4
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/bootstrap';
+
+/* Reset Boostrap styles that doesn't go well with Angular Material */
+
+* {
+  &:active,
+  :focus {
+    outline: none !important;
+  }
+}
+
+label {
+  margin-bottom: 0;
+}
+
+$link-hover-decoration: none;    // remove underline from button links
+
+$link-color: #3f51b5;            // set link color based on the used material theme
+$link-hover-color: currentColor;

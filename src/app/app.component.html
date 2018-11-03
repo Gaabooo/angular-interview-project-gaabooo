@@ -1,0 +1,23 @@
+<header>
+  <mat-toolbar color="primary">Codelitt calendar</mat-toolbar>
+</header>
+
+<section class="container">
+  <div class="row justify-content-center">
+    <button mat-raised-button color="accent" (click)="goToPrevious()" [disabled]='disabledPreviousButton'>
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+    </button>
+    <button mat-raised-button disabled class="col-md-5 text-capitalize">{{ formattedCurrentMonthAndYear }}
+    </button>
+    <button mat-raised-button color="accent" (click)="goToNext()" [disabled]='disabledNextButton'>
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+  <div class="row">
+    <mat-card *ngFor="let day of days; let i = index" class="col-md-6">
+      {{i + 1}}
+    </mat-card>
+  </div>
+</section>
+
+<footer></footer>
