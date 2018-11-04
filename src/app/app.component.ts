@@ -56,8 +56,8 @@ export class AppComponent implements OnInit {
     this.formattedCurrentMonthAndYear = format(new Date(), 'MMMM YYYY');
     this.checkMonthButtons();
     this.createDaysArray(getDaysInMonth(new Date()));
-
     this.sortReminders();
+    this.showRemindersInCalendar();
   }
 
   getDayOfWeek(day: number): String {
@@ -81,11 +81,8 @@ export class AppComponent implements OnInit {
       case 6:
         return 'Saturday';
         break;
-      case 7:
-        return 'Sunday';
-        break;
       default:
-        return 'Error';
+        return 'Sunday';
         break;
     }
   }

@@ -15,17 +15,17 @@
   </div>
   <div class="row">
     <mat-card *ngFor="let day of days; let i = index" class="col-md-2">
-      {{i + 1}} - {{getDayOfWeek(i + 1)}}
-      <!--<mat-chip-list #chipList>
-        <mat-chip *ngFor="let reminder of day['reminders']" [selectable]="false" [removable]="true" (removed)="remove(day, days[i].reminder)">
-          {{fruit.name}}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-        <mat-chip [selectable]="false" [removable]="true" (removed)="remove(fruit)">
-          This is a mock reminder
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-      </mat-chip-list>-->
+      <mat-card-header>
+        <mat-card-title>{{i + 1}}</mat-card-title>
+        <mat-card-subtitle>{{getDayOfWeek(i + 1)}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-chip-list #chipList>
+          <mat-chip *ngIf="day.events >= 1">
+            {{day.events}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
     </mat-card>
   </div>
 </section>
