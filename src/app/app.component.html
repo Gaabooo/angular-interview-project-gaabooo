@@ -4,20 +4,63 @@
 
 <section class="container">
   <div class="row justify-content-center">
-    <button mat-raised-button color="accent" (click)="goToPrevious()" [disabled]='disabledPreviousButton'>
+    <button mat-raised-button color="primary" (click)="goToPrevious()" [disabled]='disabledPreviousButton'>
       <fa-icon [icon]="faChevronLeft"></fa-icon>
     </button>
     <button mat-raised-button disabled class="col-md-5 text-capitalize">{{ formattedCurrentMonthAndYear }}
     </button>
-    <button mat-raised-button color="accent" (click)="goToNext()" [disabled]='disabledNextButton'>
+    <button mat-raised-button color="primary" (click)="goToNext()" [disabled]='disabledNextButton'>
       <fa-icon [icon]="faChevronRight"></fa-icon>
     </button>
   </div>
   <div class="row">
-    <mat-card *ngFor="let day of days; let i = index" class="col-md-6">
-      {{i + 1}}
+    <mat-card *ngFor="let day of days; let i = index" class="col-md-2">
+      {{i + 1}} - {{getDayOfWeek(i + 1)}}
+      <!--<mat-chip-list #chipList>
+        <mat-chip *ngFor="let reminder of day['reminders']" [selectable]="false" [removable]="true" (removed)="remove(day, days[i].reminder)">
+          {{fruit.name}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <mat-chip [selectable]="false" [removable]="true" (removed)="remove(fruit)">
+          This is a mock reminder
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>-->
     </mat-card>
   </div>
 </section>
-
+<section class="container">
+  <h3 class="text-center"> Reminders </h3>
+  <div class="row">
+    <button mat-raised-button color="primary" (click)="addReminder()" [disabled]='reminders.length >= 10'>
+      Add New Reminder
+    </button>
+    <mat-list class="container">
+      <mat-list-item *ngFor="let reminder of reminders; let i = index">
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput placeholder="Title" name="title" [(ngModel)]="reminders[i].title">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Color</mat-label>
+            <mat-select placeholder="Color" name="color" [(ngModel)]="reminders[i].color">
+              <mat-option *ngFor="let color of colors" [value]="color" name="color">
+                {{color}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" class="border-0" placeholder="Date" [(ngModel)]="reminders[i].date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</section>
 <footer></footer>

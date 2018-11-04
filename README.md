@@ -23,17 +23,20 @@ You should start by rendering a single month view of a calendar for the current 
 
 *-----------------------------------*
 
-### Testing Instructions:
+### Installation:
 
-This app has been developed in Angular. To Test it NPM and Angular are required.
+This app has been developed in Angular. To Test it NPM, AngularCLI, and Yarn are required.
 
 - 1st Step: Install NPM from https://www.npmjs.com/get-npm
 
 - 2nd Step: Install Angular CLI: https://angular.io/cli
 
-- 3rd Step: Open a terminal on the project root directory and run the following command "ng serve --open"
+- 3rd Step: Install Yarn: https://yarnpkg.com/en/docs/install#windows-stable
 
-### Known Issues:
+- 4th Step: Open a terminal on the project root derictory and run: "npm install"
 
-- 1) Click twice to open certain date (If one date is open, I have to deselect it with one click and click the date I want to open again). - Priority: Low
-- 2) The colors edition seems to be working wrongly. If you create a new reminder and change its colour it would change all the created reminders' colors. - Priority: Medium/High (In Progress)
+- 5th Step: On the same terminal run (https://fontawesome.com/how-to-use/on-the-web/using-with/angular): "yarn add @fortawesome/fontawesome-svg-core \
+  yarn add @fortawesome/free-solid-svg-icons \
+  yarn add @fortawesome/angular-fontawesome"
+
+- 6th Step: On the same terminal run the following command: "ng serve --open"
