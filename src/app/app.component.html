@@ -39,7 +39,7 @@
       <mat-list-item *ngFor="let reminder of reminders; let i = index">
         <div class="col-md-3">
           <mat-form-field>
-            <input matInput placeholder="Title" name="title" [(ngModel)]="reminders[i].title">
+            <input matInput placeholder="Title" name="title" [(ngModel)]="reminders[i].title" maxlength="30">
           </mat-form-field>
         </div>
         <div class="col-md-3">
