@@ -37,12 +37,12 @@
     </button>
     <mat-list class="container">
       <mat-list-item *ngFor="let reminder of reminders; let i = index">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <mat-form-field>
             <input matInput placeholder="Title" name="title" [(ngModel)]="reminders[i].title">
           </mat-form-field>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <mat-form-field>
             <mat-label>Color</mat-label>
             <mat-select placeholder="Color" name="color" [(ngModel)]="reminders[i].color">
@@ -52,12 +52,17 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <mat-form-field>
             <input matInput [matDatepicker]="picker" class="border-0" placeholder="Date" [(ngModel)]="reminders[i].date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <button mat-mini-fab color="warn" (click)="deleteReminder(i)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
         </div>
       </mat-list-item>
     </mat-list>

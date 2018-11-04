@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  format, subMonths, addMonths, getMonth, getYear, getDaysInMonth, isMonday, isTuesday, isWednesday, isThursday, isFriday, isSaturday, isSunday, startOfDay,
-  subHours, addHours, subDays, addDays, startOfMonth, endOfMonth
+  format, subMonths, addMonths, getMonth, getYear, getDay, getDaysInMonth, startOfDay, subHours, addHours, subDays, addDays, endOfMonth
 } from 'date-fns';
 
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'int-root',
@@ -14,6 +13,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 export class AppComponent implements OnInit {
   faChevronLeft = faChevronLeft;
   faChevronRight = faChevronRight;
+  faTrash = faTrash;
 
   today: Date = new Date();
   selectedMonth: Date;
@@ -55,39 +55,38 @@ export class AppComponent implements OnInit {
     this.selectedMonth = new Date();
     this.formattedCurrentMonthAndYear = format(new Date(), 'MMMM YYYY');
     this.checkMonthButtons();
-    this.days = Array(getDaysInMonth(new Date()));
+    this.createDaysArray(getDaysInMonth(new Date()));
 
     this.sortReminders();
   }
 
-  getCurrentMonth() {
-
-  }
-
-  // This should Be refactored or implemented in date-fns better
   getDayOfWeek(day: number): String {
     let date = new Date(getYear(this.selectedMonth), getMonth(this.selectedMonth), day);
-
-    if (isMonday(date)) {
-      return 'Monday'
-    }
-    if (isTuesday(date)) {
-      return 'Tuesday'
-    }
-    if (isWednesday(date)) {
-      return 'Wednesday'
-    }
-    if (isThursday(date)) {
-      return 'Thursday'
-    }
-    if (isFriday(date)) {
-      return 'Friday'
-    }
-    if (isSaturday(date)) {
-      return 'Saturday'
-    }
-    if (isSunday(date)) {
-      return 'Sunday'
+    switch (getDay(date)) {
+      case 1:
+        return 'Monday';
+        break;
+      case 2:
+        return 'Tuesday';
+        break;
+      case 3:
+        return 'Wednesday';
+        break;
+      case 4:
+        return 'Thursday';
+        break;
+      case 5:
+        return 'Friday';
+        break;
+      case 6:
+        return 'Saturday';
+        break;
+      case 7:
+        return 'Sunday';
+        break;
+      default:
+        return 'Error';
+        break;
     }
   }
 
@@ -108,7 +107,7 @@ export class AppComponent implements OnInit {
     if (getMonth(this.selectedMonth) != 0) {
       this.selectedMonth = subMonths(this.selectedMonth, 1);
       this.formattedCurrentMonthAndYear = format(this.selectedMonth, 'MMMM YYYY');
-      this.days = Array(getDaysInMonth(this.selectedMonth));
+      this.createDaysArray(getDaysInMonth(this.selectedMonth));
 
       this.checkMonthButtons();
     }
@@ -118,13 +117,20 @@ export class AppComponent implements OnInit {
     if (getMonth(this.selectedMonth) != 11) {
       this.selectedMonth = addMonths(this.selectedMonth, 1);
       this.formattedCurrentMonthAndYear = format(this.selectedMonth, 'MMMM YYYY');
-      this.days = Array(getDaysInMonth(this.selectedMonth));
+      this.createDaysArray(getDaysInMonth(this.selectedMonth));
 
       this.checkMonthButtons();
     }
   }
 
-  addReminder() {
+  createDaysArray(days: number): void {
+    this.days = [];
+    for (let i = 0; i < days; i++) {
+      this.days.push({ events: 0 });
+    }
+  }
+
+  addReminder(): void {
     this.reminders.push({
       title: 'New Reminder',
       date: startOfDay(new Date()),
@@ -132,10 +138,21 @@ export class AppComponent implements OnInit {
     });
 
     this.sortReminders();
+    this.showRemindersInCalendar();
   }
 
-  deleteReminder() {
+  deleteReminder(i: number): void {
+    this.reminders.splice(i, 1);
 
+    this.sortReminders();
+    this.showRemindersInCalendar();
+  }
+
+  showRemindersInCalendar(): void {
+    for (let reminder of this.reminders) {
+      let day = reminder.date.getDate();
+      this.days[day].events += 1;
+    }
   }
 
   sortReminders() {
