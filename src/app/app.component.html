@@ -54,8 +54,8 @@
         </div>
         <div class="col-md-3">
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" class="border-0" placeholder="Date" [(ngModel)]="reminders[i].date"
-              (ngModelChange)="showRemindersInCalendar()">
+            <input matInput [matDatepicker]="picker" [min]="startOfYear" [max]="endOfYear" class="border-0" placeholder="Date"
+              [(ngModel)]="reminders[i].date" (ngModelChange)="showRemindersInCalendar()">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>

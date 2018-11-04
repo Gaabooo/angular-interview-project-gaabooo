@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  format, subMonths, addMonths, getMonth, getYear, getDay, setMonth, getDaysInMonth, startOfDay, subHours, addHours, subDays, addDays, endOfMonth
+  format, subMonths, addMonths, getMonth, getYear, getDay, setMonth, getDaysInMonth, startOfDay, subHours, addHours, subDays, addDays, endOfMonth, startOfYear, endOfYear
 } from 'date-fns';
 
 import { faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
   disabledPreviousButton: Boolean;
   disabledNextButton: Boolean;
   days: any[];
-
+  startOfYear: Date = startOfYear(new Date());
+  endOfYear: Date = endOfYear(new Date());
 
   colors: any[] = ['Primary', 'Accent', 'Warn', 'Basic'];
 

@@ -45,7 +45,8 @@ This app has been developed in Angular. To Test it NPM, AngularCLI, and Yarn are
 ### Known Issues:
 
 - 1) The calendar doesn't look like mockup (Monday to Sunday should be in the corresponding columns).
+- 2) Time of the reminders its not considered, since its not implemented on Angular Material's Datepicker (https://github.com/angular/material2/issues/5648).
 
 
 ### TODO's:
-- 1) All the reminders get deleted when changing a month because the reminder's object doesn't have a month property.
+- 1) Reminders shouldn't be deleted when changing a month (add the "Month" property to the object "reminder").
