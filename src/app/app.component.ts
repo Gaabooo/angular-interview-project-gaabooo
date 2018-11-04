@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  format, subMonths, addMonths, getMonth, getYear, getDay, getDaysInMonth, startOfDay, subHours, addHours, subDays, addDays, endOfMonth
+  format, subMonths, addMonths, getMonth, getYear, getDay, setMonth, getDaysInMonth, startOfDay, subHours, addHours, subDays, addDays, endOfMonth
 } from 'date-fns';
 
 import { faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     this.selectedMonth = new Date();
     this.formattedCurrentMonthAndYear = format(new Date(), 'MMMM YYYY');
     this.checkMonthButtons();
-    this.createDaysArray(getDaysInMonth(new Date()));
+    this.resetDaysArray();
     this.sortReminders();
     this.showRemindersInCalendar();
   }
@@ -104,8 +104,9 @@ export class AppComponent implements OnInit {
     if (getMonth(this.selectedMonth) != 0) {
       this.selectedMonth = subMonths(this.selectedMonth, 1);
       this.formattedCurrentMonthAndYear = format(this.selectedMonth, 'MMMM YYYY');
-      this.createDaysArray(getDaysInMonth(this.selectedMonth));
-
+      this.resetDaysArray();
+      // TODO: Add Month to the reminder's logic.
+      this.reminders = [];
       this.checkMonthButtons();
     }
   }
@@ -114,15 +115,17 @@ export class AppComponent implements OnInit {
     if (getMonth(this.selectedMonth) != 11) {
       this.selectedMonth = addMonths(this.selectedMonth, 1);
       this.formattedCurrentMonthAndYear = format(this.selectedMonth, 'MMMM YYYY');
-      this.createDaysArray(getDaysInMonth(this.selectedMonth));
-
+      this.resetDaysArray();
+      // TODO: Add Month to the reminder's logic.
+      this.reminders = [];
       this.checkMonthButtons();
     }
   }
 
-  createDaysArray(days: number): void {
+  resetDaysArray(): void {
+    let daysInMonth = getDaysInMonth(this.selectedMonth.getMonth());
     this.days = [];
-    for (let i = 0; i < days; i++) {
+    for (let i = 0; i < daysInMonth; i++) {
       this.days.push({ events: 0 });
     }
   }
@@ -130,10 +133,9 @@ export class AppComponent implements OnInit {
   addReminder(): void {
     this.reminders.push({
       title: 'New Reminder',
-      date: startOfDay(new Date()),
+      date: setMonth(new Date(), this.selectedMonth.getMonth()),
       color: "Basic"
     });
-
     this.sortReminders();
     this.showRemindersInCalendar();
   }
@@ -146,9 +148,13 @@ export class AppComponent implements OnInit {
   }
 
   showRemindersInCalendar(): void {
+    this.resetDaysArray();
     for (let reminder of this.reminders) {
       let day = reminder.date.getDate();
-      this.days[day].events += 1;
+      let month = getMonth(reminder.date);
+      if (getMonth(this.selectedMonth) == month) {
+        this.days[day - 1].events += 1;
+      }
     }
   }
 

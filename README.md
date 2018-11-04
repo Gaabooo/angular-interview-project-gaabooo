@@ -42,15 +42,10 @@ This app has been developed in Angular. To Test it NPM, AngularCLI, and Yarn are
 - 6th Step: On the same terminal run the following command: "ng serve --open"
 
 
-### Bugs:
-
-- 1) When adding/deleting/changing reminders the calendar shows the incorrect event number.
-
-- 2) The reminders should be deleted when changing a month / should have a month.
-
-- 3) UI/UX needs some work.
-
 ### Known Issues:
 
-- 1) The calendar doesn't look like mockup (Monday to Sunday should be in order).
-- 2) All the reminders get deleted when changing a month.
+- 1) The calendar doesn't look like mockup (Monday to Sunday should be in the corresponding columns).
+
+
+### TODO's:
+- 1) All the reminders get deleted when changing a month because the reminder's object doesn't have a month property.

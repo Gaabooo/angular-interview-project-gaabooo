@@ -12,6 +12,7 @@ import {
   MatRippleModule,
   MatListModule,
   MatSelectModule,
+  MatDividerModule,
   MatInputModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,6 +40,7 @@ import { AppComponent } from './app.component';
     MatListModule,
     MatSelectModule,
     MatInputModule,
+    MatDividerModule,
     FormsModule,
     ReactiveFormsModule
   ],

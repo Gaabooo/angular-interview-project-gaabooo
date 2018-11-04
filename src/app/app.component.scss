@@ -1,0 +1,19 @@
+.container{
+  padding-top:20px;
+}
+.row{
+  padding-top: 10px;
+}
+
+.month-buttons{
+  padding-bottom: 20px;
+}
+
+.mat-list-item{
+  height: unset !important;
+}
+::ng-deep{
+  .mat-list-item-content{
+    padding: 15px 0px 0px 0px !important;
+  }
+}
