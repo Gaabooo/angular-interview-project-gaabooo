@@ -50,3 +50,7 @@ This app has been developed in Angular. To Test it NPM, AngularCLI, and Yarn are
 
 ### TODO's:
 - 1) Reminders shouldn't be deleted when changing a month (add the "Month" property to the object "reminder").
+
+### Bugs:
+- 1) The quantity of dates per month seems to be broken (it was working before).
+- 2) The sort of reminders is broken (it was working before).
